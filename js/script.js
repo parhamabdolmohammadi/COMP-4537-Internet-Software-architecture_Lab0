@@ -60,14 +60,17 @@ function startGame() {
     let pauseBeforeStart = value * 1000;
 
     setTimeout(() => {
-        intervalKickOff(arrayButtons, value, intervalInBetween);
-        playgame(arrayButtons, div);
+       intervalKickOff(arrayButtons, value, intervalInBetween, () => {
+    // ✅ playgame runs AFTER scrambling finishes
+    playgame(arrayButtons, div);
+  });
     }, pauseBeforeStart); 
     
 }
 
 
 function playgame(arrayButtons, div) {
+
     round = 1;
     arrayButtons.forEach(button => 
         button.object.addEventListener("click", function(){
@@ -97,7 +100,7 @@ function playgame(arrayButtons, div) {
 
 
 
-function intervalKickOff(arrayButtons, numberOfTimes, delayTime) {
+function intervalKickOff(arrayButtons, numberOfTimes, delayTime, callback) {
   let count = 0;
 
   let intervalId = setInterval(() => {
@@ -127,6 +130,7 @@ function intervalKickOff(arrayButtons, numberOfTimes, delayTime) {
 
     if (count >= numberOfTimes) {
       clearInterval(intervalId); 
+      if (callback) callback();
       console.log("Scrambling finished!");
     }
   }, delayTime);
