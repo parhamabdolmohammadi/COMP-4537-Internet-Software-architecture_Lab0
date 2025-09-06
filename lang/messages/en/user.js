@@ -1,0 +1,5 @@
+ENTER_NUMBER ="Please enter a number"
+BETWEEN_3_AND_7 ="Number must be between 3 and 7"
+CORRECT = "Correct!"
+EXCELLENT_MEMORY ="Excellent Memory!"
+WRONG_BUTTON_GAME_OVER ="Wrong button! Game Over!"
